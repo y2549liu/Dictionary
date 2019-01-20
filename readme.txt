@@ -3,7 +3,9 @@ Words and definitions are stored in the dict.txt.
 You can add words into it with format
 
 word definition
+
 or 
+
 word
 definition 
 
