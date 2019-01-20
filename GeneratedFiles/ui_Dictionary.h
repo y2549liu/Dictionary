@@ -16,6 +16,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QWidget>
@@ -26,9 +27,11 @@ class Ui_DictionaryClass
 {
 public:
     QAction *actionAbout;
+    QAction *actionAdd_custom_word;
     QWidget *centralWidget;
     QLineEdit *lineEdit;
     QTextBrowser *textBrowser;
+    QPushButton *searchButton;
     QMenuBar *menuBar;
     QMenu *menu;
     QStatusBar *statusBar;
@@ -40,14 +43,19 @@ public:
         DictionaryClass->resize(400, 400);
         actionAbout = new QAction(DictionaryClass);
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
+        actionAdd_custom_word = new QAction(DictionaryClass);
+        actionAdd_custom_word->setObjectName(QString::fromUtf8("actionAdd_custom_word"));
         centralWidget = new QWidget(DictionaryClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(10, 10, 380, 20));
+        lineEdit->setGeometry(QRect(10, 10, 281, 31));
         textBrowser = new QTextBrowser(centralWidget);
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
-        textBrowser->setGeometry(QRect(10, 40, 380, 310));
+        textBrowser->setGeometry(QRect(10, 50, 380, 320));
+        searchButton = new QPushButton(centralWidget);
+        searchButton->setObjectName(QString::fromUtf8("searchButton"));
+        searchButton->setGeometry(QRect(299, 10, 91, 31));
         DictionaryClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(DictionaryClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -61,6 +69,7 @@ public:
 
         menuBar->addAction(menu->menuAction());
         menu->addAction(actionAbout);
+        menu->addAction(actionAdd_custom_word);
 
         retranslateUi(DictionaryClass);
 
@@ -70,7 +79,9 @@ public:
     void retranslateUi(QMainWindow *DictionaryClass)
     {
         DictionaryClass->setWindowTitle(QApplication::translate("DictionaryClass", "Dictionary", nullptr));
-        actionAbout->setText(QApplication::translate("DictionaryClass", "about", nullptr));
+        actionAbout->setText(QApplication::translate("DictionaryClass", "About", nullptr));
+        actionAdd_custom_word->setText(QApplication::translate("DictionaryClass", "Add custom word", nullptr));
+        searchButton->setText(QApplication::translate("DictionaryClass", "Search", nullptr));
         menu->setTitle(QApplication::translate("DictionaryClass", "Menu", nullptr));
     } // retranslateUi
 

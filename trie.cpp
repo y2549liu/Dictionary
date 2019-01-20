@@ -3,8 +3,14 @@
 #include <unordered_map>
 #include <string>
 using namespace std;
+
+template<typename T=string>
+class Trie {
+
+};
+
 struct trie {
-	string definition;
+	string definition="";
 	unordered_map<char, trie*> ch;
 	void insert(string word, string meaning) {
 		trie* ptr = this;
@@ -14,6 +20,9 @@ struct trie {
 			else
 				ptr = ptr->ch[c] = new trie;
 		ptr->definition = meaning;
+	}
+	void insert(char* word, char* meaning) {
+		insert(string(word), string(meaning));
 	}
 	trie* searchPrefix(string prefix) {
 		trie* ptr = this;
@@ -26,7 +35,7 @@ struct trie {
 	}
 	string search(string word) {
 		trie* ptr = searchPrefix(word);
-		return ptr ? ptr->definition : "Not found!";
+		return (ptr && ptr->definition != "") ? ptr->definition : "Not found!";
 	}
 	void fuzzySearchPrefix(string prefix) {
 		trie* ptr = searchPrefix(prefix);
@@ -39,5 +48,4 @@ struct trie {
 			if (p.second) 
 				p.second->list(prefix + p.first);
 	}
-	
 };
